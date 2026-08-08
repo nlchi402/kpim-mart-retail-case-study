@@ -5,7 +5,7 @@ A portfolio case study demonstrating how a sales-focused retail dataset can be e
 ## Live project
 
 - **Interactive Power BI report:** [Open the dashboard](https://app.powerbi.com/view?r=eyJrIjoiMTMxZTBiMTQtM2I0Yi00YzI3LWFhZTktNmIwMWU3YWU0OTJhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D)
-- **GitHub Pages case study:** `https://nlchi402.github.io/kpim-mart-retail-case-study/`
+- **GitHub Pages case study:** `https://github.com/nlchi402/kpim-mart-retail-case-study'
 
 ## Project overview
 
