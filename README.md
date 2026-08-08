@@ -1,13 +1,11 @@
 # KPIM Mart — End-to-End Retail Business Intelligence Case Study
 
-A portfolio case study demonstrating how a sales-focused retail dataset can be extended into an integrated business intelligence solution covering **sales, inventory, supplier cost, accounts receivable, accounts payable, and working capital**.
+A portfolio case study demonstrating how a sales-focused retail dataset can be extended into an integrated business intelligence solution covering sales, inventory, supplier cost, accounts receivable, accounts payable, and working capital.
 
 ## Live project
 
 - **Interactive Power BI report:** [Open the dashboard](https://app.powerbi.com/view?r=eyJrIjoiMTMxZTBiMTQtM2I0Yi00YzI3LWFhZTktNmIwMWU3YWU0OTJhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D)
-- **GitHub Pages case study:** `https://YOUR-GITHUB-USERNAME.github.io/kpim-mart-retail-bi-case-study/`
-
-> Replace `YOUR-GITHUB-USERNAME` after publishing the repository with GitHub Pages.
+- **GitHub Pages case study:** `https://nlchi402.github.io/kpim-mart-retail-case-study/`
 
 ## Project overview
 
