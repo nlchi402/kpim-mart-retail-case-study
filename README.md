@@ -5,7 +5,7 @@ A portfolio case study demonstrating how a sales-focused retail dataset can be e
 ## Live project
 
 - **Interactive Power BI report:** [Open the dashboard](https://app.powerbi.com/view?r=eyJrIjoiMTMxZTBiMTQtM2I0Yi00YzI3LWFhZTktNmIwMWU3YWU0OTJhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D)
-- **GitHub Pages case study:** `https://github.com/nlchi402/kpim-mart-retail-case-study'
+- **GitHub Pages case study:** https://github.com/nlchi402/kpim-mart-retail-case-study
 
 ## Project overview
 
@@ -64,12 +64,12 @@ The solution connects these areas through shared business dimensions and consist
 
 ## Reporting system
 
-1. **Yearly Sales Report** — annual revenue, profitability, growth, and target achievement.
-2. **Monthly Sales Report** — monthly performance, prior-month comparison, and weekly trends.
-3. **Daily Turnover Report** — MTD sales, daily efficiency, and progress against targets.
-4. **Inventory Management** — receipts, issues, stock value, DIO, and inventory turnover.
-5. **Inventory Cost** — freight, supplier cost, payables, and DPO.
-6. **Working Capital Report** — AR, AP, inventory, DSO, DPO, DIO, CCC, and working capital.
+1. **Yearly Sales Report**: annual revenue, profitability, growth, and target achievement.
+2. **Monthly Sales Report**: monthly performance, prior-month comparison, and weekly trends.
+3. **Daily Turnover Report**: MTD sales, daily efficiency, and progress against targets.
+4. **Inventory Management**: receipts, issues, stock value, DIO, and inventory turnover.
+5. **Inventory Cost**: freight, supplier cost, payables, and DPO.
+6. **Working Capital Report**: AR, AP, inventory, DSO, DPO, DIO, CCC, and working capital.
 
 ## Dashboard previews
 
