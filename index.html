@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KPIM Mart — End-to-End Retail Business Intelligence Case Study</title><meta content="End-to-end retail business intelligence case study using Excel, Power BI, Power Query, DAX, data modelling, and synthetic operational data." name="description"/><meta content="Chi Linh Nguyen" name="author"/><meta content="index, follow" name="robots"/><meta content="KPIM Mart — End-to-End Retail Business Intelligence Case Study" property="og:title"/><meta content="A portfolio project connecting sales, inventory, supplier cost, receivables, payables, and working-capital analysis." property="og:description"/><meta content="website" property="og:type"/><meta content="assets/images/yearly-sales-report.png" property="og:image"/>
+<link href="assets/css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="layout">
+<nav id="sidebar">
+<div class="side-title">KPIM Mart · Excel + Power BI</div><ul>
+<li class="lv1"><a href="#part-a.-project-overview">Part A. Project overview</a></li>
+<li class="lv2"><a href="#business-scenario">Business scenario</a></li>
+<li class="lv2"><a href="#my-contribution">My contribution</a></li>
+<li class="lv2"><a href="#requirements-and-objectives">Analytical requirements</a></li>
+<li class="lv1"><a href="#part-b.-data-and-model">Part B. Data and model</a></li>
+<li class="lv2"><a href="#data-sources">Data sources</a></li><li class="lv2"><a href="#excel-prototyping-and-validation">Excel prototyping &amp; validation</a></li>
+<li class="lv2"><a href="#synthetic-data-design">Synthetic data design</a></li>
+<li class="lv2"><a href="#data-processing-flow">Data processing flow</a></li>
+<li class="lv2"><a href="#business-logic">Business logic</a></li>
+<li class="lv2"><a href="#validation-and-limitations">Validation and limitations</a></li>
+<li class="lv1"><a href="#part-c.-power-bi-solution">Part C. Power BI solution</a></li>
+<li class="lv2"><a href="#solution-architecture">Solution architecture</a></li>
+<li class="lv2"><a href="#interactive-features">Interactive features</a></li>
+<li class="lv2"><a href="#core-kpi-groups">Core KPI groups</a></li>
+<li class="lv1"><a href="#part-d.-reporting-system">Part D. Reporting system</a></li>
+<li class="lv2"><a href="#six-report-overview">Six-report overview</a></li>
+<li class="lv3"><a href="#yearly-sales-report">1. Yearly Sales Report</a></li>
+<li class="lv3"><a href="#monthly-sales-report">2. Monthly Sales Report</a></li>
+<li class="lv3"><a href="#daily-turnover-report">3. Daily Turnover Report</a></li>
+<li class="lv3"><a href="#inventory-management">4. Inventory Management</a></li>
+<li class="lv3"><a href="#inventory-cost">5. Inventory Cost</a></li>
+<li class="lv3"><a href="#working-capital-report">6. Working Capital Report</a></li>
+<li class="lv1"><a href="#part-e.-management-value">Part E. Insights and management value</a></li>
+<li class="lv2"><a href="#illustrative-insights">Illustrative insights</a></li>
+<li class="lv2"><a href="#management-use-cases">Management use cases</a></li>
+<li class="lv1"><a href="#part-f.-report-access">Part F. Report access</a></li>
+</ul>
+</nav>
+<main id="content">
+<header class="doc">
+<h1>KPIM Mart — End-to-End Retail Business Intelligence Case Study</h1>
+<div class="sub">Designing and validating synthetic operational data in Excel, then building a Power BI reporting solution across Sales · Inventory · Supplier Cost · Working Capital</div>
+<div class="badges"><span class="badge">Synthetic Data Case Study</span><span class="badge">Excel Prototyping &amp; Reconciliation</span><span class="badge">12 Source Tables</span><span class="badge">70 Documented Measures</span><span class="badge">6 Interactive Report Pages</span><span class="badge">3 Connected Business Flows</span></div>
+<div class="meta">Personal Portfolio Project · Excel · Power BI · Power Query · DAX · Data Modelling · Synthetic Data Design · Version 2026-07-28</div>
+</header>
+<blockquote class="portfolio-disclosure"><p><strong>Portfolio disclosure:</strong> This case study starts from a sales-focused retail dataset and extends it with self-designed synthetic operational data for warehouses, suppliers, inventory movements, accounts receivable, accounts payable, and working capital. All figures are illustrative, contain no confidential customer information, and do not represent the actual performance of a real business.</p></blockquote><div class="cta">
+<div class="cta-copy"><strong>Explore the interactive Power BI report</strong><span>Open the public report in a new tab to use filters, navigation buttons, and analytical views.</span></div>
+<a class="cta-button" href="https://app.powerbi.com/view?r=eyJrIjoiMTMxZTBiMTQtM2I0Yi00YzI3LWFhZTktNmIwMWU3YWU0OTJhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D" rel="noopener noreferrer" target="_blank">Open interactive report →</a>
+</div>
+<section class="level1" id="part-a.-project-overview">
+<h1>Part A. Project overview</h1>
+<section class="level2" id="business-scenario">
+<h2>Business scenario</h2>
+<p>KPIM Mart is used as a fictional retail business scenario. The project began with a sales-focused dataset and explored how a centralized business intelligence solution could connect commercial performance with inventory efficiency, supplier and logistics costs, receivables, payables, and working-capital management.</p>
+<blockquote><p><strong>Business challenge:</strong> Extend the source data into an integrated retail analytical model and build a reporting system that supports yearly, monthly, and daily sales monitoring together with inventory, supplier-cost, and capital-efficiency analysis.</p></blockquote>
+<div class="kpi-strip">
+<div class="kpi-box"><strong>Sales Performance</strong><span>Revenue, deductions, COGS, gross profit, targets, and growth.</span></div>
+<div class="kpi-box"><strong>Inventory</strong><span>Receipts, issues, stock value, DIO, and turnover.</span></div>
+<div class="kpi-box"><strong>Supplier &amp; Logistics Cost</strong><span>Freight, purchase value, payables, and payment cycle.</span></div>
+<div class="kpi-box"><strong>Working Capital</strong><span>AR, AP, Inventory, DSO, DPO, DIO, CCC, and Working Capital.</span></div>
+</div>
+</section><section class="level2" id="my-contribution">
+<h2>My contribution</h2>
+<div class="two-col">
+<div class="info-card"><h4>Business and data design</h4><ul>
+<li>Translated retail processes into analytical requirements, table structures, business keys, and reporting grains.</li>
+<li>Extended the sales-focused scope with six synthetic operational and finance tables covering Warehouses, Suppliers, Weekly Inventory, Daily Inventory, Accounts Payable, and Accounts Receivable.</li>
+<li>Mapped the final dataset into 12 connected source tables spanning Sales, Master Data, Targets, Inventory, AR, and AP.</li>
+<li>Built an Excel mock-up and reconciliation layer using structured tables, XLOOKUP, SUMIFS, and PivotTables to test mappings and business rules before Power BI development.</li></ul></div>
+<div class="info-card"><h4>Power BI implementation</h4><ul>
+<li>Validated Power Query transformations and DAX outputs against the Excel reconciliation baseline before finalising the six report pages.</li><li>Cleaned, typed, reshaped, and standardized the tables in Power Query.</li>
+<li>Designed the analytical data model and developed 70 documented DAX and analytical measures.</li>
+<li>Built 6 interactive report pages with slicers, bookmarks, navigation, dynamic comparisons, and As-of-Date analysis.</li>
+<li>Produced supporting documentation, including the data dictionary, project management document, and portfolio case study.</li>
+</ul></div>
+</div>
+</section>
+<section class="level2" id="requirements-and-objectives">
+<h2>Analytical requirements and solution response</h2>
+<table><thead><tr><th>Analytical requirement</th><th>Solution response</th></tr></thead><tbody>
+<tr><td>Extend the analysis beyond a sales-only view.</td><td>Designed connected synthetic data for warehouses, suppliers, inventory movements, AR, and AP to support end-to-end retail analysis.</td></tr><tr><td>Validate business rules and data mappings before visualisation.</td><td>Used Excel structured tables, XLOOKUP, SUMIFS, and PivotTables to prototype calculations, reconcile totals, and resolve mapping or aggregation inconsistencies before transferring the logic into Power Query and DAX.</td></tr>
+<tr><td>Monitor performance by year, month, and day.</td><td>Developed Yearly Sales, Monthly Sales, and Daily Turnover pages with consistent time logic and As-of-Date analysis.</td></tr>
+<tr><td>Compare actual results with prior periods and targets.</td><td>Created Last Year, Last Month, YoY, MoM, target-achievement, rolling-12-month, and run-rate measures.</td></tr>
+<tr><td>Connect commercial, operational, and financial performance.</td><td>Linked Sales, Inventory, Supplier Cost, AR, and AP through shared dimensions and three connected business flows.</td></tr>
+<tr><td>Make the reporting solution easy to explore.</td><td>Added slicers, bookmarks, navigation buttons, dynamic display units, conditional formatting, and drill-down detail views.</td></tr>
+</tbody></table>
+</section>
+</section>
+<section class="level1" id="part-b.-data-and-model">
+<h1>Part B. Data and model</h1>
+<section class="level2" id="data-sources">
+<h2>Data sources</h2>
+<p>The final workbook contains <strong>12 source tables</strong>. The project management workbook documents <strong>145 fields across 11 core data-dictionary tables</strong>; the twelfth source, <strong>Sales Targets (<code>KH Doanh Thu</code>)</strong>, is maintained as a planning input and used for actual-versus-target analysis.</p>
+<table><thead><tr><th>Source table</th><th>Core information</th><th>Reporting purpose</th><th>Data origin</th></tr></thead><tbody>
+<tr><td>Promotions<br/><code>Khuyến mãi</code></td><td>Promotion name, discount type, and discount rate.</td><td>Sales deductions and promotion analysis.</td><td>Starting sales-focused scope</td></tr><tr><td>Customers<br/><code>Khách hàng</code></td><td>Customer ID, contact details, demographics, and membership tier.</td><td>Customer contribution and segmentation.</td><td>Starting sales-focused scope</td></tr><tr><td>Warehouses<br/><code>Kho</code></td><td>Warehouse ID, name, address, region, and operating status.</td><td>Inventory movement, stock, and warehouse analysis.</td><td>Synthetic extension designed for this project</td></tr><tr><td>Stores<br/><code>Cửa hàng</code></td><td>Store ID, name, manager, district, address, and warehouse mapping.</td><td>Store performance and warehouse allocation.</td><td>Starting sales-focused scope</td></tr><tr><td>Suppliers<br/><code>Nhà cung cấp</code></td><td>Supplier ID, product count, purchase quantity/value, deposits, and payables.</td><td>Supplier cost, sourcing, and payment analysis.</td><td>Synthetic extension designed for this project</td></tr><tr><td>Products<br/><code>Sản phẩm</code></td><td>SKU, product name, selling price, unit cost, brand, origin, group, and category.</td><td>Product, profitability, and inventory analysis.</td><td>Starting sales-focused scope</td></tr><tr><td>Weekly Inventory<br/><code>Xuất Nhập Tồn Tuần</code></td><td>Weekly beginning stock, receipts, issues, transfers, ending stock, and values.</td><td>Inventory roll-forward, turnover, DIO, and period trends.</td><td>Synthetic extension designed for this project</td></tr><tr><td>Daily Inventory<br/><code>Xuất Nhập Tồn Ngày</code></td><td>Posting date, document number, transaction type, receipts, issues, stock, and source/destination warehouses.</td><td>Movement traceability and As-of-Date inventory reporting.</td><td>Synthetic extension designed for this project</td></tr><tr><td>Sales<br/><code>Bán Hàng</code></td><td>Transaction, order date, store, product, customer, quantity, price, discount, returns, revenue, COGS, and gross profit.</td><td>Revenue, margin, growth, returns, and contribution analysis.</td><td>Starting sales-focused scope</td></tr><tr><td>Sales Targets<br/><code>KH Doanh Thu</code></td><td>Monthly revenue plans by district and store for 2020–2022.</td><td>Actual-versus-target and required sales run-rate analysis.</td><td>Starting planning input</td></tr><tr><td>Accounts Payable<br/><code>Công Nợ Phải Trả</code></td><td>Supplier documents, purchases, deposits, payment terms, due dates, ending balance, and aging buckets.</td><td>DPO, payable turnover, supplier obligations, and aging analysis.</td><td>Synthetic extension designed for this project</td></tr><tr><td>Accounts Receivable<br/><code>Công Nợ Phải Thu</code></td><td>Customer revenue, credit-sales rate, collections, opening/ending balance, and aging buckets.</td><td>DSO, collections, receivable aging, and working capital.</td><td>Synthetic extension designed for this project</td></tr>
+</tbody></table>
+</section><section class="level2" id="excel-prototyping-and-validation">
+<h2>Excel prototyping and validation</h2>
+<p>Before building the Power BI model, I used Excel as a transparent prototyping and reconciliation layer. This allowed business rules to be tested at row level, master data to be mapped consistently, and source totals to be reviewed before the logic was transferred into Power Query and DAX.</p>
+<div class="two-col">
+<div class="info-card"><h4>How Excel was used</h4><ul>
+<li><strong>Structured Excel Tables</strong> kept formulas and references consistent across the Sales, Inventory, Supplier, Accounts Receivable, and Accounts Payable datasets.</li>
+<li><strong>XLOOKUP</strong> mapped product codes to product names, unit costs, and selling prices; linked stores to warehouses; and matched customer names with customer IDs.</li>
+<li><strong>SUMIFS</strong> aggregated daily inventory movements into weekly warehouse–product balances and summarised supplier, receivable, and payable values by business key and reporting period.</li>
+<li><strong>PivotTables</strong> were used during the mock-up and review stage to compare totals by product, warehouse, store, supplier, and period.</li>
+</ul></div>
+<div class="info-card"><h4>Outcome</h4><ul>
+<li>Created consistent product, customer, store, supplier, and warehouse mappings across the 12 source tables.</li>
+<li>Produced traceable row-level calculations for inventory receipts, issues, on-hand quantities, unit costs, and inventory values.</li>
+<li>Established reconciliation checkpoints between daily and weekly inventory, sales and targets, and AR/AP balances before dashboard development.</li>
+<li>Provided a validated baseline for checking Power Query transformations and Power BI/DAX outputs, reducing the risk of carrying mapping or aggregation errors into the final reports.</li>
+</ul></div>
+</div>
+<table><thead><tr><th>Stage</th><th>Excel method</th><th>Application in the project</th><th>Result</th></tr></thead><tbody>
+<tr><td>Master-data mapping</td><td>XLOOKUP and structured references</td><td>Mapped product attributes, store-to-warehouse assignments, and customer identifiers.</td><td>Consistent keys and attributes across the analytical model.</td></tr>
+<tr><td>Inventory mock-up</td><td>XLOOKUP, arithmetic formulas, and SUMIFS</td><td>Calculated unit-cost-based receipt, issue, and on-hand values and rolled daily movements into weekly balances.</td><td>Traceable inventory logic and a reconciled opening-to-closing stock flow.</td></tr>
+<tr><td>Financial checks</td><td>SUMIFS and PivotTables</td><td>Summarised supplier purchases, AR/AP balances, and period totals for comparison with report outputs.</td><td>Earlier identification of mapping, period, and aggregation inconsistencies.</td></tr>
+<tr><td>Power BI hand-off</td><td>Excel reconciliation baseline</td><td>Compared transformed data and KPI totals with the Excel prototype before finalising DAX measures and visuals.</td><td>Greater confidence that the published dashboards reflected the intended business rules.</td></tr>
+</tbody></table>
+</section><section class="level2" id="synthetic-data-design">
+<h2>Synthetic data design</h2>
+<p>The synthetic extensions were designed around connected retail business rules rather than isolated random values. Their purpose is to demonstrate how a sales-focused source can be expanded into an operational and working-capital reporting model.</p>
+<div class="two-col">
+<div class="info-card"><h4>Connected business rules</h4><ul>
+<li>Sales transactions generate Gross Sales, Sales Deduction, Net Sales, COGS, Gross Profit, and return values.</li>
+<li>Warehouse receipts increase inventory and create supplier purchase and payable records.</li>
+<li>Warehouse issues reduce inventory quantities and values and are reconciled to product movement.</li>
+<li>Credit sales create receivables; collections reduce AR ending balances.</li>
+<li>AR, AP, and ending inventory feed Working Capital and Cash Conversion Cycle calculations.</li>
+<li>The monthly target source is reshaped from a wide month-by-column layout into a period-based structure for time analysis.</li>
+</ul></div>
+<div class="info-card"><h4>Analytical grain</h4><ul>
+<li><strong>Sales:</strong> one transaction line by order, product, customer, store, and warehouse.</li>
+<li><strong>Daily Inventory:</strong> one warehouse movement by document, posting date, and product.</li>
+<li><strong>Weekly Inventory:</strong> one warehouse–product balance by reporting week.</li>
+<li><strong>Accounts Payable:</strong> one supplier purchase/document balance with payment and aging attributes.</li>
+<li><strong>Accounts Receivable:</strong> one customer balance by reporting period with collection and aging attributes.</li>
+<li><strong>Sales Targets:</strong> one store–month planning value after transformation.</li>
+</ul></div>
+</div>
+</section>
+<section class="level2" id="data-processing-flow">
+<h2>Data processing flow</h2>
+<div class="diagram"><div class="pipeline">
+<div class="pipe-step"><strong>Source scope</strong><span>6 starting tables + 6 synthetic extension tables</span></div><div class="pipe-step"><strong>Excel prototype</strong><span>Structured tables, XLOOKUP, SUMIFS, PivotTables, and reconciliation checks</span></div>
+<div class="pipe-step"><strong>Power Query</strong><span>Cleaning, typing, mapping, reshaping, and standardization</span></div>
+<div class="pipe-step"><strong>Data Model</strong><span>Facts linked to Date, Product, Store, Customer, Supplier, and Warehouse</span></div>
+<div class="pipe-step"><strong>DAX Measures</strong><span>70 documented measures for time, targets, turnover, and working capital</span></div>
+<div class="pipe-step"><strong>Power BI Reports</strong><span>6 pages from executive overview to operational detail</span></div>
+<div class="pipe-step"><strong>Decisions</strong><span>Sales, inventory, supplier, credit, and cash-cycle decisions</span></div>
+</div></div>
+<p class="small-note">Excel served as a transparent control layer for mapping, calculation testing, and reconciliation. Power Query then standardised the data, while shared Date, Product, Store, Customer, Supplier, and Warehouse dimensions applied consistent filter context across the six report pages.</p>
+</section>
+<section class="level2" id="business-logic">
+<h2>Business logic</h2>
+<table><thead><tr><th>Flow</th><th>Core logic</th><th>Management meaning</th></tr></thead><tbody>
+<tr><td>Sales</td><td><code>Gross Sales − Sales Deduction = Net Sales</code><br/><code>Net Sales − COGS = Gross Profit</code></td><td>Connects selling value, discounts and returns, cost of goods sold, and profitability.</td></tr>
+<tr><td>Inventory</td><td><code>Beginning Inventory + Inbound − Outbound = Ending Inventory</code></td><td>Reconciles quantity and value movement from opening to closing stock.</td></tr>
+<tr><td>Working Capital</td><td><code>Working Capital = AR + Inventory − AP</code><br/><code>CCC = DSO + DIO − DPO</code></td><td>Measures capital tied up in receivables and inventory and the time required to convert operating investment back into cash.</td></tr>
+</tbody></table>
+</section><section class="level2" id="validation-and-limitations">
+<h2>Validation and limitations</h2>
+<table><thead><tr><th>Validation area</th><th>Control applied</th></tr></thead><tbody>
+<tr><td>Sales reconciliation</td><td>Excel row-level formulas and PivotTables were used to compare Gross Sales, Sales Deduction, Net Sales, COGS, Gross Profit, returns, and target totals before the results were checked again in Power BI.</td></tr>
+<tr><td>Inventory reconciliation</td><td>XLOOKUP-based unit-cost mappings and SUMIFS-based roll-ups were used to reconcile daily receipts, issues, transfers, and on-hand values to weekly beginning and ending inventory.</td></tr>
+<tr><td>Working-capital reconciliation</td><td>Excel checks summarised AR, AP, and Inventory balances by reporting period and provided a comparison baseline for Working Capital, DSO, DPO, DIO, and CCC measures in Power BI.</td></tr>
+<tr><td>Time and target logic</td><td>Date, As-of-Date, Last Year, Last Month, rolling-12-month, and sales-target measures use consistent filter context.</td></tr>
+<tr><td>Portfolio limitation</td><td>The operational extensions and resulting insights are synthetic and illustrative. They demonstrate analytical design and decision-support logic, not causal findings or realized business impact.</td></tr>
+</tbody></table>
+</section>
+</section>
+<section class="level1" id="part-c.-power-bi-solution">
+<h1>Part C. Power BI solution</h1>
+<section class="level2" id="solution-architecture"><h2>Solution architecture</h2>
+<p>The solution uses Excel as the initial prototyping and reconciliation layer, followed by Power Query for data preparation, a relational analytical model for business relationships, and a documented layer of 70 DAX and analytical measures. This structure makes the calculation logic traceable from row-level Excel checks through to executive and operational Power BI reporting.</p>
+<blockquote><p><strong>Design principle:</strong> Business rules are first tested and reconciled in Excel; Power Query standardises the source; KPIs are calculated at raw value before display-unit conversion; and time and comparison measures use consistent filter context so results remain reconcilable.</p></blockquote>
+</section>
+<section class="level2" id="interactive-features"><h2>Interactive features</h2>
+<div class="two-col"><div class="info-card"><h4>Data exploration</h4><ul><li>Filters by year, month, date, store, product, customer, supplier, and warehouse.</li><li>Bookmarks to switch Store, Employee, Customer, Brand, Supplier, and Storage views.</li><li>Drill-down through summarized KPI tables.</li><li>Navigation buttons across report pages.</li></ul></div><div class="info-card"><h4>Comparison and control</h4><ul><li>Last Year, Last Month, and Target comparisons.</li><li>As of Date logic for Daily Turnover.</li><li>Rolling 12 months for Inventory Turnover, DIO, Payable Turnover, and DPO.</li><li>Display-unit selection and KPI conditional formatting.</li></ul></div></div>
+</section>
+<section class="level2" id="core-kpi-groups"><h2>Core KPI groups</h2>
+<table><thead><tr><th>Group</th><th>Representative KPIs</th><th>Management question</th></tr></thead><tbody>
+<tr><td>Sales</td><td>Gross Sales, Net Sales, Sales Deduction, COGS, Gross Profit, % GP, Target Achievement, YoY/MoM Growth.</td><td>Is sales performance improving, and which groups create revenue and profit?</td></tr>
+<tr><td>Inventory</td><td>On-hand Quantity/Value, Beginning Value, In/Out Value, Average Inventory, Inventory Turnover, DIO.</td><td>Where is inventory held, how quickly does it move, and is stock aligned with demand?</td></tr>
+<tr><td>Supplier &amp; Cost</td><td>Freight In, Freight Out, FI/Purchase, FO/Sales, Payable Turnover, DPO.</td><td>Which warehouses or suppliers drive cost and payment obligations?</td></tr>
+<tr><td>Working Capital</td><td>AR Ending Balance, AP Ending Balance, DSO, DPO, DIO, CCC, Working Capital.</td><td>Is capital tied up in receivables or inventory, and how efficient is the cash cycle?</td></tr>
+</tbody></table><p class="small-note">The 70 documented measures include core KPIs, prior-period comparisons, rolling calculations, target measures, contribution metrics, and dynamic reporting helpers.</p>
+</section>
+</section>
+<section class="level1" id="part-d.-reporting-system">
+<h1>Part D. Reporting system</h1>
+<section class="level2" id="six-report-overview"><h2>Six-report overview</h2>
+<table><thead><tr><th>Report</th><th>Objective</th><th>Primary users</th></tr></thead><tbody>
+<tr><td>Yearly Sales Report</td><td>Review annual performance, growth, and target achievement.</td><td>Executives and sales management.</td></tr>
+<tr><td>Monthly Sales Report</td><td>Monitor short-term movements and monthly efficiency.</td><td>Sales and store managers.</td></tr>
+<tr><td>Daily Turnover Report</td><td>Track daily sales progress based on As of Date.</td><td>Sales operations and stores.</td></tr>
+<tr><td>Inventory Management</td><td>Control stock quantity, value, and turnover efficiency.</td><td>Warehouse, procurement, and operations.</td></tr>
+<tr><td>Inventory Cost</td><td>Analyze logistics cost, suppliers, and payables.</td><td>Procurement, finance, and warehouse operations.</td></tr>
+<tr><td>Working Capital Report</td><td>Connect AR, AP, and Inventory for working-capital management.</td><td>Executives, finance, and operations.</td></tr>
+</tbody></table></section>
+<section class="level3" id="yearly-sales-report"><h3>1. Yearly Sales Report</h3>
+<p>The report provides an annual overview combining actual results, prior-year comparison, and target achievement.</p>
+<figure class="report-image"><img alt="Yearly Sales Report — annual revenue, profitability, growth, and contribution" loading="lazy" src="assets/images/yearly-sales-report.png"/><figcaption>Yearly Sales Report — annual revenue, profitability, growth, and contribution</figcaption></figure>
+<div class="two-col"><div class="info-card"><h4>Main content</h4><ul><li>Gross Sales, Net Sales, Target, Sales Deduction, COGS, and Gross Profit.</li><li>Customers generating sales and returns.</li><li>Monthly trend and Last Year comparison.</li><li>Detailed KPI table by selected dimension.</li></ul></div><div class="info-card"><h4>Features and value</h4><ul><li>Switch Store, Employee, Customer, and Brand views.</li><li>YoY comparison and % Gross Profit monitoring.</li><li>Identify major contributors and declining groups.</li><li>Support annual planning and resource allocation.</li></ul></div></div></section>
+<section class="level3" id="monthly-sales-report"><h3>2. Monthly Sales Report</h3>
+<p>The report focuses on the selected month, allowing users to monitor short-term results and explain changes versus the previous month.</p>
+<figure class="report-image"><img alt="Monthly Sales Report — monthly performance, prior-month comparison, and weekly trend" loading="lazy" src="assets/images/monthly-sales-report.png"/><figcaption>Monthly Sales Report — monthly performance, prior-month comparison, and weekly trend</figcaption></figure>
+<div class="two-col"><div class="info-card"><h4>Main content</h4><ul><li>Net Sales, Gross Profit, Sales Deduction, and Target Achievement.</li><li>Weekly movement within the month.</li><li>Performance by store, product, customer, and brand.</li><li>Detailed KPIs versus Last Month.</li></ul></div><div class="info-card"><h4>Features and value</h4><ul><li>MoM comparison within the same filter context.</li><li>Identify unusual weeks or business groups.</li><li>Review the effect of pricing and promotion activity.</li><li>Support in-month corrective action.</li></ul></div></div></section>
+<section class="level3" id="daily-turnover-report"><h3>3. Daily Turnover Report</h3>
+<p>Daily Turnover monitors sales progress up to a selected day, enabling managers to respond quickly to short-term changes.</p>
+<figure class="report-image"><img alt="Daily Turnover Report — translated English dashboard" loading="lazy" src="assets/images/daily-turnover-report.png"/><figcaption>Daily Turnover Report — MTD sales, daily efficiency, and target progress</figcaption></figure>
+<div class="two-col"><div class="info-card"><h4>Main content</h4><ul><li>Net Sales YTD/MTD and % Gross Profit YTD/MTD.</li><li>Net Sales Achievement, Daily AVG MTD Sales, and Daily AVG MTG Sales.</li><li>Working Days and Working Days Left.</li><li>Daily revenue and gross-profit trend.</li></ul></div><div class="info-card"><h4>Features and value</h4><ul><li>As of Date controls cumulative results and monthly target context.</li><li>Filters by Employee, Store, and Category.</li><li>Identify abnormal daily revenue or margin movements.</li><li>Estimate the required run rate for remaining working days.</li></ul></div></div></section>
+<section class="level3" id="inventory-management"><h3>4. Inventory Management</h3>
+<p>The report connects stock quantity, value, and movement speed to evaluate warehouse operating efficiency.</p>
+<figure class="report-image"><img alt="Inventory Management — receipts, issues, stock, DIO, and Inventory Turnover" loading="lazy" src="assets/images/inventory-management.png"/><figcaption>Inventory Management — receipts, issues, stock, DIO, and Inventory Turnover</figcaption></figure>
+<div class="two-col"><div class="info-card"><h4>Main content</h4><ul><li>On-hand Quantity, On-hand Value, and Average Inventory Value.</li><li>In Value, Out Value, DIO, and Inventory Turnover.</li><li>Closing inventory comparison with Last Year.</li><li>Product table with Beginning Value, EOP, Unit Cost, and turnover.</li></ul></div><div class="info-card"><h4>Features and value</h4><ul><li>Switch Supplier and Storage views.</li><li>Switch Inventory Quantity and Inventory Value perspectives.</li><li>Identify high stock, slow movement, and imbalances.</li><li>Support replenishment and stock-transfer planning.</li></ul></div></div></section>
+<section class="level3" id="inventory-cost"><h3>5. Inventory Cost</h3>
+<p>The report extends inventory management into logistics cost and supplier payment obligations.</p>
+<figure class="report-image"><img alt="Inventory Cost — Freight In/Out, supplier cost, and DPO" loading="lazy" src="assets/images/inventory-cost.png"/><figcaption>Inventory Cost — Freight In/Out, supplier cost, and DPO</figcaption></figure>
+<div class="two-col"><div class="info-card"><h4>Main content</h4><ul><li>Freight In, Freight Out, FI/Purchase, and FO/Sales.</li><li>Payable Turnover 12 months and DPO.</li><li>On-hand Value compared with Last Year.</li><li>Supplier and warehouse cost table.</li></ul></div><div class="info-card"><h4>Features and value</h4><ul><li>Compare by Storage or Supplier.</li><li>Analyze monthly cost and DPO trends.</li><li>Conditional formatting highlights unusual payment periods.</li><li>Support supplier review and logistics-cost control.</li></ul></div></div></section>
+<section class="level3" id="working-capital-report"><h3>6. Working Capital Report</h3>
+<p>The report connects receivables, payables, and inventory to provide an integrated view of working-capital efficiency and the cash-conversion cycle.</p>
+<figure class="report-image"><img alt="Working Capital Report — translated English dashboard" loading="lazy" src="assets/images/working-capital-report.png"/><figcaption>Working Capital Report — DSO, DPO, DIO, CCC, and working capital</figcaption></figure>
+<div class="two-col"><div class="info-card"><h4>Main content</h4><ul><li>DSO, DPO, DIO, and CCC.</li><li>AR Ending Balance, AP Ending Balance, Inventory, and Working Capital.</li><li>In-year trends and Last Year comparisons.</li><li>Aging, supplier, category, and capital-movement analysis.</li></ul></div><div class="info-card"><h4>Features and value</h4><ul><li>Monitor all working-capital components on one page.</li><li>Identify capital tied up in receivables or inventory.</li><li>Assess the use of supplier payment terms.</li><li>Support cash-flow and credit-policy decisions.</li></ul></div></div></section>
+</section>
+<section class="level1" id="part-e.-management-value"><h1>Part E. Insights and management value</h1>
+<section class="level2" id="illustrative-insights">
+<h2>Illustrative insights and recommended actions</h2>
+<p class="small-note">The patterns below demonstrate how the dashboard can be interpreted. They are illustrative decision scenarios derived from synthetic data and do not represent actual company performance.</p>
+<table><thead><tr><th>Illustrative pattern</th><th>Business interpretation</th><th>Recommended action</th></tr></thead><tbody>
+<tr><td>MTD Net Sales are below the required monthly run rate.</td><td>The current daily sales pace may be insufficient to achieve the monthly target.</td><td>Prioritize stores or categories with the largest target gaps and monitor the required average sales for the remaining working days.</td></tr>
+<tr><td>DIO contributes a large share of CCC.</td><td>Working capital may be concentrated in slow-moving or excess inventory.</td><td>Review slow-moving SKUs, replenishment levels, and stock-transfer opportunities between warehouses or stores.</td></tr>
+<tr><td>Revenue contribution is high but Gross Profit contribution is comparatively low.</td><td>A high-sales category may be diluting overall margin through product mix, pricing, or discounting.</td><td>Review price, promotion, discount, and product-mix decisions together rather than optimizing revenue alone.</td></tr>
+<tr><td>Freight ratios or payment periods vary materially by supplier or warehouse.</td><td>Sourcing routes and payment terms may create avoidable logistics cost or cash pressure.</td><td>Compare supplier terms, order sizes, warehouse allocation, and freight efficiency before the next purchasing cycle.</td></tr>
+<tr><td>Receivable or payable balances move into older aging buckets.</td><td>Collection risk or near-term payment obligations may be increasing.</td><td>Prioritize collection follow-up, review customer credit terms, and sequence supplier payments using due-date and aging information.</td></tr>
+</tbody></table>
+</section><section class="level2" id="management-use-cases"><h2>Management use cases</h2>
+<table><thead><tr><th>Use case</th><th>Information provided</th><th>Decision supported</th></tr></thead><tbody>
+<tr><td>Business performance review</td><td>Revenue, profitability, targets, growth, and key contributors.</td><td>Adjust plans, portfolio priorities, and resource allocation.</td></tr>
+<tr><td>Monthly/daily sales review</td><td>Weekly/daily movements by store, employee, and category.</td><td>Launch timely sales and promotion actions.</td></tr>
+<tr><td>Inventory review</td><td>Closing stock, inventory value, DIO, turnover, and slow movement.</td><td>Replenish, transfer, or reduce stock based on demand.</td></tr>
+<tr><td>Supplier review</td><td>Freight cost, purchase value, AP, Payable Turnover, and DPO.</td><td>Negotiate terms, prioritize payment, and control logistics cost.</td></tr>
+<tr><td>Working-capital review</td><td>AR, AP, Inventory, DSO, DPO, DIO, CCC, and Working Capital.</td><td>Adjust credit, inventory, and cash-flow plans.</td></tr>
+</tbody></table>
+<blockquote><p><strong>Core value:</strong> The solution establishes one analytical flow from Sales to Inventory, Supplier Cost, AR/AP, and Working Capital, allowing users to trace movements and frame management actions within a consistent data model.</p></blockquote>
+</section></section>
+<section class="level1" id="part-f.-report-access"><h1>Part F. Report access</h1>
+<p>The Power BI solution is available as an interactive public portfolio report. Users can navigate across all six pages, apply slicers, switch analytical views, and inspect the reporting logic directly in the browser.</p>
+<div class="cta"><div class="cta-copy"><strong>KPIM Mart Performance Report</strong><span>Explore all six Power BI report pages.</span></div><a class="cta-button" href="https://app.powerbi.com/view?r=eyJrIjoiMTMxZTBiMTQtM2I0Yi00YzI3LWFhZTktNmIwMWU3YWU0OTJhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D" rel="noopener noreferrer" target="_blank">Open report →</a></div>
+<p class="small-note">This report uses synthetic data and is published solely for portfolio demonstration. Publish to web creates a public link and should not be used for confidential, internal, or sensitive information.</p>
+</section>
+<footer>KPIM Mart · End-to-End Retail Business Intelligence Case Study · Excel + Power BI · Synthetic Data Portfolio Project · 2026</footer>
+</main>
+</div>
+</body>
+</html>
