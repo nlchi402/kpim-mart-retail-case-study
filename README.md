@@ -72,30 +72,19 @@ The solution connects these areas through shared business dimensions and consist
 6. **Working Capital Report**: AR, AP, inventory, DSO, DPO, DIO, CCC, and working capital.
 
 ## Dashboard previews
+<img width="2602" height="1468" alt="Screenshot 2026-08-09 195437" src="https://github.com/user-attachments/assets/4866cebe-4257-4dab-b4d5-f10f66b3e7df" />
 
 ### Yearly Sales Report
 
-![Yearly Sales Report](assets/images/yearly-sales-report.png)
-
 ### Monthly Sales Report
-
-![Monthly Sales Report](assets/images/monthly-sales-report.png)
 
 ### Daily Turnover Report
 
-![Daily Turnover Report](assets/images/daily-turnover-report.png)
-
 ### Inventory Management
-
-![Inventory Management](assets/images/inventory-management.png)
 
 ### Inventory Cost
 
-![Inventory Cost](assets/images/inventory-cost.png)
-
 ### Working Capital Report
-
-![Working Capital Report](assets/images/working-capital-report.png)
 
 ## Repository structure
 
