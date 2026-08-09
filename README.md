@@ -75,16 +75,22 @@ The solution connects these areas through shared business dimensions and consist
 <img width="2602" height="1468" alt="Screenshot 2026-08-09 195437" src="https://github.com/user-attachments/assets/4866cebe-4257-4dab-b4d5-f10f66b3e7df" />
 
 ### Yearly Sales Report
+<img width="2602" height="1470" alt="Screenshot 2026-08-09 195506" src="https://github.com/user-attachments/assets/f8206a40-e465-4b62-8834-1dcd486485af" />
 
 ### Monthly Sales Report
+<img width="2604" height="1470" alt="Screenshot 2026-08-09 195534" src="https://github.com/user-attachments/assets/fc4eb5fc-980f-41cb-bcc1-94dd598d5669" />
 
 ### Daily Turnover Report
+<img width="2602" height="1470" alt="Screenshot 2026-08-09 195606" src="https://github.com/user-attachments/assets/b9563085-a551-4aef-ab61-476bc2b25ec6" />
 
 ### Inventory Management
+<img width="2604" height="1472" alt="Screenshot 2026-08-09 195633" src="https://github.com/user-attachments/assets/d0f869a5-210c-425e-8722-76805e4288b5" />
 
 ### Inventory Cost
+<img width="2602" height="1470" alt="Screenshot 2026-08-09 195704" src="https://github.com/user-attachments/assets/def06ce1-571b-4074-9618-37fbeed14648" />
 
 ### Working Capital Report
+<img width="2604" height="1468" alt="Screenshot 2026-08-09 200240" src="https://github.com/user-attachments/assets/c0b015cc-3abf-46d6-a50a-128d79a2db14" />
 
 ## Repository structure
 
