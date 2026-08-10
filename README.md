@@ -1,4 +1,4 @@
-# KPIM Mart — End-to-End Retail Business Intelligence Case Study
+# KPIM Mart: End-to-End Retail Business Intelligence Case Study
 
 A portfolio case study demonstrating how a sales-focused retail dataset can be extended into an integrated business intelligence solution covering sales, inventory, supplier cost, accounts receivable, accounts payable, and working capital.
 
